@@ -1,10 +1,14 @@
 # OpenCode Manager
 
+[![OpenCode](https://img.shields.io/badge/OpenCode-1.1.39+-blue?logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MSAwLTgtMy41OS04LThzMy41OS04IDgtOCA4IDMuNTkgOCA4LTMuNTkgOC04IDh6IiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik0xMiA2djZsNC41IDIuNyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=)](https://github.com/anomalyco/opencode)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](../../LICENSE)
+[![GitHub](https://img.shields.io/badge/GitHub-CXL--edu%2Fopencode--manager--skills-181717?logo=github)](https://github.com/CXL-edu/opencode-manager-skills)
+
 [English](../../README.md) | 中文文档
 
 ---
 
-**适用于 AI 编程代理（AI Coding Agents）的通用 OpenCode 管理工具包。**
+**适用于 AI 编程代理（AI Coding Agents）的通用 [OpenCode](https://opencode.ai) 管理工具包。**
 
 它通过统一的 CLI 接口，让 Cursor、Claude Code、Codex 等 AI 代理能够轻松管理本地 OpenCode 实例。
 
@@ -103,10 +107,18 @@ opencode-manager/
     └── opencode-manager.md   # 英文 Agent 适配规则 / Prompt
 ```
 
-## 📄 License
+## 📄 许可证
 
-MIT
+本项目采用 MIT 许可证 - 详见 [LICENSE](../../LICENSE) 文件。
 
 ## 🔖 版本信息
 
-v2.0 | 2026-01-28 | Compatible with OpenCode 1.1.39+
+v2.0 | 2026-01-28 | 兼容 [OpenCode 1.1.39+](https://opencode.ai)
+
+## 🔗 相关链接
+
+- [OpenCode GitHub 仓库](https://github.com/anomalyco/opencode)
+- [OpenCode 官方网站](https://opencode.ai)
+- [OpenCode 文档](https://opencode.ai/docs)
+- [OpenCode Server 文档](https://opencode.ai/docs/server)
+- [本项目 GitHub 仓库](https://github.com/CXL-edu/opencode-manager-skills)

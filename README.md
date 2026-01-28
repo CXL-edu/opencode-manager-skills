@@ -1,10 +1,14 @@
 # OpenCode Manager
 
+[![OpenCode](https://img.shields.io/badge/OpenCode-1.1.39+-blue?logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJzNC40OCAxMCAxMCAxMCAxMC00LjQ4IDEwLTEwUzE3LjUyIDIgMTIgMnptMCAxOGMtNC40MSAwLTgtMy41OS04LThzMy41OS04IDgtOCA4IDMuNTkgOCA4LTMuNTkgOC04IDh6IiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik0xMiA2djZsNC41IDIuNyIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48L3N2Zz4=)](https://github.com/anomalyco/opencode)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub](https://img.shields.io/badge/GitHub-CXL--edu%2Fopencode--manager--skills-181717?logo=github)](https://github.com/CXL-edu/opencode-manager-skills)
+
 English | [中文文档](docs/zh/README.md)
 
 ---
 
-**A universal OpenCode management toolkit for AI Coding Agents.**
+**A universal [OpenCode](https://opencode.ai) management toolkit for AI Coding Agents.**
 
 It provides a unified CLI interface that allows AI agents like Cursor, Claude Code, and Codex cli to easily manage local OpenCode instances.
 
@@ -104,8 +108,16 @@ opencode-manager/
 
 ## 📄 License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🔖 Version
 
-v2.0 | 2026-01-28 | Compatible with OpenCode 1.1.39+
+v2.0 | 2026-01-28 | Compatible with [OpenCode 1.1.39+](https://opencode.ai)
+
+## 🔗 Links
+
+- [OpenCode GitHub Repository](https://github.com/anomalyco/opencode)
+- [OpenCode Official Website](https://opencode.ai)
+- [OpenCode Documentation](https://opencode.ai/docs)
+- [OpenCode Server Docs](https://opencode.ai/docs/server)
+- [This Project Repository](https://github.com/CXL-edu/opencode-manager-skills)
