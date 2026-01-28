@@ -31,16 +31,16 @@ We offer multiple installation methods, with the remote one-line install being r
 No need to download the repository, just run this in your terminal:
 
 ```bash
-# Chinese version (auto-configures Chinese adapter)
+# Chinese installer UI
 curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang zh
 
-# English version
+# English installer UI
 curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang en
 ```
 
 > **The script will automatically:**
-> 1. Download and install the `opencode-manager` CLI tool.
-> 2. Auto-generate the corresponding Agent adapter files based on your environment (e.g., for Cursor).
+> 1. Install the `opencode-manager` skill (`SKILL.md` + references) into your skills directory.
+> 2. It does not install the OpenCode CLI; make sure `opencode` is available in your PATH.
 
 ### 📦 Quick Install (Local Script)
 
@@ -50,7 +50,7 @@ If you have already cloned this repository, you can use the local script:
 # Interactive mode (Recommended)
 bash install.sh
 
-# Silent install (English)
+# Silent install (English UI)
 bash install.sh --lang en
 ```
 
@@ -64,12 +64,16 @@ If you need full control, you can configure it manually:
    cd opencode-manager-skills
    ```
 
-2. **Configure Common CLI**:
-   Add the `opencode-manager` script to your system `PATH`, or call it directly via its full path.
+2. **Ensure OpenCode CLI**:
+   Make sure `opencode` is installed and available in your system `PATH`.
 
-3. **Configure Agent Adapter** (e.g., for Cursor):
-   - Copy `en/opencode-manager.md` to your project's `.cursor/skills/` directory.
+3. **Configure Agent Skill** (e.g., for Cursor):
+   - Copy the `opencode-manager/` folder to your project's `.cursor/skills/` directory.
    - You can then use it in Cursor chat: "Use opencode-manager to start a server..."
+
+**Supported skill roots:**
+- Project-level: `.cursor/skills/`, `.claude/skills/`, `.codex/skills/`
+- User-level: `~/.cursor/skills/`, `~/.claude/skills/`, `~/.codex/skills/`
 
 ---
 
@@ -100,10 +104,11 @@ opencode-manager/
 │   └── zh/
 │       └── README.md         # Chinese Documentation
 ├── install.sh                # Unified Installation Script
-├── zh/
-│   └── opencode-manager.md   # Chinese Agent Adapter / Prompt
-└── en/
-    └── opencode-manager.md   # English Agent Adapter / Prompt
+└── opencode-manager/
+    ├── SKILL.md              # Skill entry (required)
+    └── references/
+        ├── REFERENCE.en.md   # English reference
+        └── REFERENCE.zh.md   # Chinese reference
 ```
 
 ## 📄 License

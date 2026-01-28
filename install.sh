@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # OpenCode Manager Skill Installer
-# Supports: Chinese (zh) / English (en)
+# Installer UI language: Chinese (zh) / English (en)
 #
 # One-line install:
 #   curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash
@@ -25,7 +25,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Detect if running from curl (no local files)
 REMOTE_INSTALL=false
-if [[ ! -f "$SCRIPT_DIR/zh/opencode-manager.md" ]]; then
+if [[ ! -f "$SCRIPT_DIR/opencode-manager/SKILL.md" ]]; then
     REMOTE_INSTALL=true
     REPO_URL="https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master"
 fi
@@ -58,10 +58,9 @@ print_warning() {
 # Detect Cursor/VSCode workspace
 detect_install_dir() {
     local dirs=(
-        ".cursor/commands"
         ".cursor/skills"
-        ".vscode/commands"
-        ".vscode/skills"
+        ".claude/skills"
+        ".codex/skills"
     )
     
     # Check current directory
@@ -72,8 +71,8 @@ detect_install_dir() {
         fi
     done
     
-    # Default to .cursor/commands
-    echo ".cursor/commands"
+    # Default to .cursor/skills
+    echo ".cursor/skills"
     return 0
 }
 
@@ -117,23 +116,27 @@ select_install_dir() {
     fi
     echo ""
     echo "  [1] $detected_dir (detected/检测到)"
-    echo "  [2] .cursor/commands"
-    echo "  [3] .cursor/skills"
-    echo "  [4] Custom path / 自定义路径"
+    echo "  [2] .cursor/skills"
+    echo "  [3] .claude/skills"
+    echo "  [4] .codex/skills"
+    echo "  [5] Custom path / 自定义路径"
     echo ""
-    read -p "Enter choice (1-4) [1]: " choice </dev/tty
+    read -p "Enter choice (1-5) [1]: " choice </dev/tty
     
     case $choice in
         ""|1)
             INSTALL_DIR="$detected_dir"
             ;;
         2)
-            INSTALL_DIR=".cursor/commands"
-            ;;
-        3)
             INSTALL_DIR=".cursor/skills"
             ;;
+        3)
+            INSTALL_DIR=".claude/skills"
+            ;;
         4)
+            INSTALL_DIR=".codex/skills"
+            ;;
+        5)
             read -p "Enter custom path: " custom_path </dev/tty
             INSTALL_DIR="$custom_path"
             ;;
@@ -160,29 +163,34 @@ download_file() {
 
 # Install the skill
 install_skill() {
-    local source_file=""
-    local dest_file="$INSTALL_DIR/opencode-manager.md"
-    
+    local source_dir=""
+    local skill_dir="$INSTALL_DIR/opencode-manager"
+    local ref_dir="$skill_dir/references"
+
     # Create directory if not exists
-    mkdir -p "$INSTALL_DIR"
-    
+    mkdir -p "$ref_dir"
+
     if [[ "$REMOTE_INSTALL" == true ]]; then
         # Download from remote
         print_info "Downloading from remote..."
-        download_file "$REPO_URL/$LANG/opencode-manager.md" "$dest_file"
+        download_file "$REPO_URL/opencode-manager/SKILL.md" "$skill_dir/SKILL.md"
+        download_file "$REPO_URL/opencode-manager/references/REFERENCE.en.md" "$ref_dir/REFERENCE.en.md"
+        download_file "$REPO_URL/opencode-manager/references/REFERENCE.zh.md" "$ref_dir/REFERENCE.zh.md"
     else
         # Copy from local
-        source_file="$SCRIPT_DIR/$LANG/opencode-manager.md"
-        
-        if [[ ! -f "$source_file" ]]; then
-            print_error "Source file not found: $source_file"
+        source_dir="$SCRIPT_DIR/opencode-manager"
+
+        if [[ ! -f "$source_dir/SKILL.md" ]]; then
+            print_error "Source file not found: $source_dir/SKILL.md"
             exit 1
         fi
-        
-        cp "$source_file" "$dest_file"
+
+        cp "$source_dir/SKILL.md" "$skill_dir/SKILL.md"
+        cp "$source_dir/references/REFERENCE.en.md" "$ref_dir/REFERENCE.en.md"
+        cp "$source_dir/references/REFERENCE.zh.md" "$ref_dir/REFERENCE.zh.md"
     fi
-    
-    print_success "Installed: $dest_file"
+
+    print_success "Installed: $skill_dir"
 }
 
 # Show completion message
@@ -193,7 +201,7 @@ show_completion() {
     if [[ "$LANG" == "zh" ]]; then
         echo -e "${GREEN}  安装完成！${NC}"
         echo ""
-        echo "  文件位置: $INSTALL_DIR/opencode-manager.md"
+        echo "  文件位置: $INSTALL_DIR/opencode-manager/SKILL.md"
         echo ""
         echo "  使用方法:"
         echo "    1. 在 Cursor 中打开项目"
@@ -202,7 +210,7 @@ show_completion() {
     else
         echo -e "${GREEN}  Installation Complete!${NC}"
         echo ""
-        echo "  File location: $INSTALL_DIR/opencode-manager.md"
+        echo "  File location: $INSTALL_DIR/opencode-manager/SKILL.md"
         echo ""
         echo "  Usage:"
         echo "    1. Open project in Cursor"
@@ -244,13 +252,13 @@ show_help() {
     echo ""
     echo "Options:"
     echo "  --lang, -l    Language: zh (Chinese) or en (English)"
-    echo "  --dir, -d     Install directory path"
+    echo "  --dir, -d     Skills root directory (e.g., .cursor/skills)"
     echo "  --help, -h    Show this help message"
     echo ""
     echo "Examples:"
     echo "  $0                        # Interactive mode"
-    echo "  $0 --lang zh              # Install Chinese version"
-    echo "  $0 --lang en --dir .      # Install English to current dir"
+    echo "  $0 --lang zh              # Chinese installer UI"
+    echo "  $0 --lang en --dir .cursor/skills  # English UI, install to Cursor skills"
     echo ""
     echo "One-line install:"
     echo "  curl -fsSL URL/install.sh | bash -s -- --lang zh"
@@ -273,7 +281,7 @@ main() {
     fi
     
     echo ""
-    print_info "Language: $LANG"
+    print_info "Installer language: $LANG"
     print_info "Install to: $INSTALL_DIR"
     echo ""
     

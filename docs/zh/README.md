@@ -31,16 +31,16 @@
 无需下载仓库，直接在终端执行即可：
 
 ```bash
-# 中文版（自动配置中文适配器）
+# 中文安装界面
 curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang zh
 
-# 英文版
+# 英文安装界面
 curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang en
 ```
 
 > **该脚本会自动执行：**
-> 1. 下载并安装 `opencode-manager` CLI 工具。
-> 2. 根据你的环境（如 Cursor），自动生成对应的 Agent 适配器文件。
+> 1. 安装 `opencode-manager` skill（`SKILL.md` + references）到技能目录。
+> 2. 不会安装 OpenCode CLI，请确保 `opencode` 已在 PATH 中。
 
 ### 📦 快速安装（本地脚本）
 
@@ -50,7 +50,7 @@ curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/mas
 # 交互式安装（推荐）
 bash install.sh
 
-# 静默安装（中文）
+# 静默安装（中文界面）
 bash install.sh --lang zh
 ```
 
@@ -64,12 +64,16 @@ bash install.sh --lang zh
    cd opencode-manager-skills
    ```
 
-2. **配置通用 CLI**：
-   将 `opencode-manager` 脚本加入到你的系统 `PATH` 中，或者直接通过路径调用。
+2. **确保 OpenCode CLI**：
+   请确保 `opencode` 已安装并在系统 `PATH` 中可用。
 
-3. **配置 Agent 适配器**（以 Cursor 为例）：
-   - 将 `zh/opencode-manager.md` 复制到项目的 `.cursor/skills/` 目录。
+3. **配置 Agent Skill**（以 Cursor 为例）：
+   - 将 `opencode-manager/` 目录复制到项目的 `.cursor/skills/` 目录。
    - 在 Cursor 对话中即可使用：“用 opencode-manager 启动服务...”。
+
+**支持的技能目录：**
+- 项目级：`.cursor/skills/`、`.claude/skills/`、`.codex/skills/`
+- 用户级：`~/.cursor/skills/`、`~/.claude/skills/`、`~/.codex/skills/`
 
 ---
 
@@ -101,10 +105,11 @@ opencode-manager/
 │   └── zh/
 │       └── README.md         # 中文说明（本文档）
 ├── install.sh                # 统一安装脚本
-├── zh/
-│   └── opencode-manager.md   # 中文 Agent 适配规则 / Prompt
-└── en/
-    └── opencode-manager.md   # 英文 Agent 适配规则 / Prompt
+└── opencode-manager/
+    ├── SKILL.md              # Skill 入口（必需）
+    └── references/
+        ├── REFERENCE.en.md   # 英文参考
+        └── REFERENCE.zh.md   # 中文参考
 ```
 
 ## 📄 许可证
