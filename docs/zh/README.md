@@ -32,10 +32,10 @@
 
 ```bash
 # 中文版（自动配置中文适配器）
-curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/main/install.sh | bash -s -- --lang zh
+curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang zh
 
 # 英文版
-curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/main/install.sh | bash -s -- --lang en
+curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang en
 ```
 
 > **该脚本会自动执行：**

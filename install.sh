@@ -4,9 +4,9 @@
 # Supports: Chinese (zh) / English (en)
 #
 # One-line install:
-#   curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/main/install.sh | bash
-#   curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/main/install.sh | bash -s -- --lang zh
-#   curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/main/install.sh | bash -s -- --lang en
+#   curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang zh
+#   curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang en
 #
 
 set -e
@@ -27,7 +27,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REMOTE_INSTALL=false
 if [[ ! -f "$SCRIPT_DIR/zh/opencode-manager.md" ]]; then
     REMOTE_INSTALL=true
-    REPO_URL="https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/main"
+    REPO_URL="https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master"
 fi
 
 print_banner() {
@@ -89,7 +89,7 @@ select_language() {
     echo "  [1] 中文 (Chinese)"
     echo "  [2] English"
     echo ""
-    read -p "Enter choice (1 or 2): " choice
+    read -p "Enter choice (1 or 2): " choice </dev/tty
     
     case $choice in
         1|zh|ZH|中文)
@@ -121,7 +121,7 @@ select_install_dir() {
     echo "  [3] .cursor/skills"
     echo "  [4] Custom path / 自定义路径"
     echo ""
-    read -p "Enter choice (1-4) [1]: " choice
+    read -p "Enter choice (1-4) [1]: " choice </dev/tty
     
     case $choice in
         ""|1)
@@ -134,7 +134,7 @@ select_install_dir() {
             INSTALL_DIR=".cursor/skills"
             ;;
         4)
-            read -p "Enter custom path: " custom_path
+            read -p "Enter custom path: " custom_path </dev/tty
             INSTALL_DIR="$custom_path"
             ;;
         *)
@@ -277,11 +277,16 @@ main() {
     print_info "Install to: $INSTALL_DIR"
     echo ""
     
-    # Confirm
-    read -p "Continue? (Y/n): " confirm
-    if [[ "$confirm" =~ ^[Nn] ]]; then
-        print_warning "Installation cancelled"
-        exit 0
+    # Confirm (skip if running non-interactively)
+    if [[ -t 0 ]] || [[ -t 1 ]]; then
+        read -p "Continue? (Y/n): " confirm </dev/tty
+        if [[ "$confirm" =~ ^[Nn] ]]; then
+            print_warning "Installation cancelled"
+            exit 0
+        fi
+    else
+        # Non-interactive mode - auto-confirm
+        print_info "Running in non-interactive mode, auto-confirming..."
     fi
     
     # Install
