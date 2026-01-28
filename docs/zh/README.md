@@ -26,19 +26,20 @@
 
 我们提供了多种安装方式，推荐使用远程一键安装。
 
-### ⚡️ 远程一键安装（推荐）
+### ⚡️ YOLO 一键安装 / 远程一键安装（推荐）
 
-无需下载仓库，直接在终端执行即可：
+无需下载仓库，直接在终端执行以下任一命令即可：
 
 ```bash
+# YOLO：无参数一键执行
+curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash
+
 # 中文安装界面
 curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang zh
 
 # 英文安装界面
 curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang en
 ```
-
-> **该脚本会自动执行：**
 > 1. 安装 `opencode-manager` skill（`SKILL.md` + references）到技能目录。
 > 2. 不会安装 OpenCode CLI，请确保 `opencode` 已在 PATH 中。
 

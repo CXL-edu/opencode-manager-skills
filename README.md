@@ -26,19 +26,20 @@ It provides a unified CLI interface that allows AI agents like Cursor, Claude Co
 
 We offer multiple installation methods, with the remote one-line install being recommended.
 
-### ⚡️ Remote Install (Recommended)
+### ⚡️ Remote / YOLO Install (Recommended)
 
-No need to download the repository, just run this in your terminal:
+No need to download the repository, just run one of these in your terminal:
 
 ```bash
+# YOLO: one-liner with no options
+curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash
+
 # Chinese installer UI
 curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang zh
 
 # English installer UI
 curl -fsSL https://raw.githubusercontent.com/CXL-edu/opencode-manager-skills/master/install.sh | bash -s -- --lang en
 ```
-
-> **The script will automatically:**
 > 1. Install the `opencode-manager` skill (`SKILL.md` + references) into your skills directory.
 > 2. It does not install the OpenCode CLI; make sure `opencode` is available in your PATH.
 
